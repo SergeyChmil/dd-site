@@ -1,0 +1,46 @@
+{
+  "main_menu": [
+    {
+      "text": "Главная",
+      "url": ""
+    },
+    {
+      "text": "Контакты",
+      "url": "contacts"
+    },
+    {
+      "text": "Галереи",
+      "url": "galleries"
+    },
+    {
+      "text": "Стоимость",
+      "url": "prices"
+    },
+    {
+      "text": "Блог",
+      "url": "blog"
+    }
+  ],
+  "galleries": [
+    {
+      "text": "Свадьба",
+      "url": "gallery_wedding"
+    },
+    {
+      "text": "Любовная история",
+      "url": "gallery_lovestory"
+    },
+    {
+      "text": "Портрет",
+      "url": "gallery_portret"
+    },
+    {
+      "text": "Семья",
+      "url": "gallery_family"
+    },
+    {
+      "text": "Беременность",
+      "url": "gallery_pregnancy"
+    }
+  ]
+}

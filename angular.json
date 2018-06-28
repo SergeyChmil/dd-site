@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "../dd-site-visitcard/node_modules/bootstrap/scss/bootstrap.scss",
               "src/styles.scss"
             ],
             "scripts": []
