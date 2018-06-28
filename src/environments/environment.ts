@@ -13,7 +13,8 @@ export const environment = {
     messagingSenderId: '396744228563'
   },
   keys: {
-    mainMenu: 'main_menu'
+    mainMenu: 'main_menu',
+    galleriesMenu: 'galleries_menu'
   }
 };
 

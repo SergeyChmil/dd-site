@@ -17,11 +17,12 @@ export class AppComponent implements OnInit {
   title = 'app';
 
   mainMenu$: Observable<any>;
-  _activeMenuButton: string;
+  galleriesMenu$: Observable<any>;
 
   constructor(private afdb: AngularFireDatabase) {
 
     this.mainMenu$ = afdb.object(`${environment.keys.mainMenu}`).valueChanges();
+    this.galleriesMenu$ = afdb.object(`${environment.keys.galleriesMenu}`).valueChanges();
 
     this.mainMenu$.subscribe((data) => {
 
@@ -36,6 +37,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  checkIsDropDown(pUrl: string) {
+    if (pUrl === 'galleries') return true;
+    return false;
+  }
+
+  getGalleryURL(galleryUrl) {
+    return `galleries/${galleryUrl}`;
   }
 
 }

@@ -21,26 +21,44 @@
       "url": "blog"
     }
   ],
-  "galleries": [
+  "galleries_menu": [
     {
       "text": "Свадьба",
-      "url": "gallery_wedding"
+      "url": "wedding"
     },
     {
       "text": "Любовная история",
-      "url": "gallery_lovestory"
+      "url": "lovestory"
     },
     {
       "text": "Портрет",
-      "url": "gallery_portret"
+      "url": "portrait"
     },
     {
       "text": "Семья",
-      "url": "gallery_family"
+      "url": "family"
     },
     {
       "text": "Беременность",
-      "url": "gallery_pregnancy"
+      "url": "pregnancy"
+    }
+  ],
+  "contacts": [
+    {
+      "type": "Свадебный и семейный фотограф",
+      "value": "г. Киев. Возможен выезд по Украине и всему миру."
+    },
+    {
+      "type": "тел.:",
+      "value": "+38088 888-8888"
+    },
+    {
+      "type": "e-mail:",
+      "value": "mail@mail.com"
+    },
+    {
+      "type": "skype",
+      "value": "skyyyype"
     }
   ]
 }

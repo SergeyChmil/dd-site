@@ -17,6 +17,7 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from 'angularfire2';
+import { GalleryComponent } from './pages/galleries/gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {AngularFireModule} from 'angularfire2';
     GalleriesComponent,
     PricesComponent,
     BlogComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,

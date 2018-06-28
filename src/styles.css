@@ -1,8 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Alex+Brush|Open+Sans+Condensed:700");
 body {
   background-image: url("assets/images/main_bg_pattern.png");
   background-repeat: repeat;
   background-attachment: fixed; }
+
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+               supported by Chrome and Opera */ }
+
+.dd-site-main-logo {
+  font-family: 'Alex Brush', cursive;
+  font-size: 5rem; }
+
+hr.dd-site-dotted-line {
+  border: none;
+  margin-bottom: 0;
+  margin-top: 0;
+  border-top: 1px dotted lightgray;
+  color: #fff;
+  background-color: #fff;
+  height: 1px;
+  width: 90%; }
+
+.dd-site-menu {
+  font-family: 'Open Sans Condensed', sans-serif;
+  cursor: pointer; }
 
 a.nav-item.nav-link.dd-site-menu.active {
   color: rebeccapurple; }
