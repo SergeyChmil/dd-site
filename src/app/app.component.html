@@ -1,40 +1,50 @@
-<div class="container">
-  <div class="dd-site-main-logo bg-light text-center noselect" >
+<main role="main" class="container-fluid bg-light ">
+  <div class="dd-site-main-logo text-center noselect">
     Daria Dobrovolska
     <hr class="dd-site-dotted-line">
   </div>
   <nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top" data-toggle="affix">
     <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
       <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <div *ngFor="let item of mainMenu$ | async">
 
-
-
-          <div class="navbar-nav">
-            <div  ngbDropdown *ngFor="let item of mainMenu$ | async" >
-
-              <a  class="nav-item nav-link dd-site-menu noselect"
-                  *ngIf="checkIsDropDown(item.url)" ngbDropdownToggle >{{item.text | uppercase}}</a>
-
-              <a  class="nav-item nav-link dd-site-menu"
-                  routerLink={{item.url}} routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-                  *ngIf="!checkIsDropDown(item.url)" >{{item.text | uppercase}}</a>
-
-
+            <div ngbDropdown *ngIf="checkIsDropDown(item.url)">
+              <a class="nav-item nav-link dd-site-menu noselect" ngbDropdownToggle>{{item.text | uppercase}}</a>
               <div ngbDropdownMenu >
-                <button  *ngFor="let gallery of galleriesMenu$ | async" class="dropdown-item"
-                         routerLink= {{getGalleryURL(gallery.url)}} routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-                >{{gallery.text | uppercase}}</button>
-
+                <button *ngFor="let gallery of galleriesMenu$ | async" class="dropdown-item"
+                        routerLink={{getGalleryURL(gallery.url)}} routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                >{{gallery.text | uppercase}}
+                </button>
               </div>
             </div>
+
+            <div *ngIf="!checkIsDropDown(item.url)">
+              <a class="nav-item nav-link dd-site-menu"
+                 routerLink={{item.url}} routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                {{item.text | uppercase}}</a>
+            </div>
+
           </div>
-
-
+        </div>
       </div>
     </div>
   </nav>
+  <hr class="dd-site-dotted-line ">
+
   <router-outlet></router-outlet>
+
+</main>
+
+<div class="container-fluid dd-site-footer-container">
+  <footer class="footer dd-site-footer">
+    <div class="container-fluid text-center">
+      <span class="text-muted">Darya Dobrovolska © 2018</span>
+    </div>
+  </footer>
 </div>
+
 
 
 

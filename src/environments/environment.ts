@@ -10,11 +10,14 @@ export const environment = {
     databaseURL: 'https://dd-site-visitcard.firebaseio.com',
     projectId: 'dd-site-visitcard',
     storageBucket: 'dd-site-visitcard.appspot.com',
-    messagingSenderId: '396744228563'
+    messagingSenderId: '396744228563',
   },
   keys: {
     mainMenu: 'main_menu',
-    galleriesMenu: 'galleries_menu'
+    galleriesMenu: 'galleries_menu',
+    contactsData: 'contacts',
+    feedbackMessages: 'feedback_messages',
+    newFeedbackMessagesList: 'new_feedback_messages_list',
   }
 };
 

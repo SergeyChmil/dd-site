@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import url('https://fonts.googleapis.com/css?family=Alex+Brush|Open+Sans+Condensed:700');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700');
 
 
 body{
@@ -19,31 +20,52 @@ body{
                                   supported by Chrome and Opera */
 }
 
-.dd-site-main-logo{
-  font-family: 'Alex Brush', cursive;
-  font-size: 5rem;
-}
-
-hr.dd-site-dotted-line {
+.dd-site-dotted-line {
   border:none;
   margin-bottom: 0;
   margin-top: 0;
-  border-top:1px dotted lightgray;
+  border-top:1px dashed lightgray;
   color:#fff;
   background-color:#fff;
   height:1px;
   width:90%;
 }
 
-.dd-site-menu{
-  font-family: 'Open Sans Condensed', sans-serif;
-  cursor: pointer;
+.dd-site-content-text-bold{
+  font-weight: 700;
 }
 
-a.nav-item.nav-link.dd-site-menu.active{
-  color: rebeccapurple;
+.dd-site-textblock{
+  border-radius: 5px;
+  margin-top: 1rem;
+  border: 2px solid #efefef;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 300;
+
+  -webkit-box-shadow: 1px 3px 49px -4px rgba(0,0,0,0.05);
+  -moz-box-shadow: 1px 3px 49px -4px rgba(0,0,0,0.05);
+  box-shadow: 1px 3px 49px -4px rgba(0,0,0,0.05);
 }
 
-a.nav-item.nav-link.dd-site-menu{
-  color: black;
+.dd-site-content-vertical-padding{
+  padding: 0.5rem 0 0.5rem 0 ;
 }
+.dd-site-content-horizontal-padding{
+  padding: 0 0.5rem  0 0.5rem;
+}
+.dd-site-content-vertical-padding-l{
+  padding: 1rem 0 1rem 0 ;
+}
+
+.container-fluid.dd-site-footer-container{
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.dd-site-footer{
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: lightgrey;
+}
+

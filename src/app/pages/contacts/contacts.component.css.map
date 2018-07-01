@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,2BAA2B;EACzB,SAAS,EAAC,IAAI;EACd,KAAK,EAAE,OAAO;;AAEhB,qBAAqB;EACnB,SAAS,EAAC,IAAI;EACd,KAAK,EAAE,OAAO;;AAEhB,qBAAqB;EACnB,SAAS,EAAC,IAAI;EACd,KAAK,EAAE,OAAO",
+"sources": ["contacts.component.scss"],
 "names": [],
 "file": "contacts.component.css"
 }

@@ -1,3 +1,19 @@
+.dd-site-main-logo {
+  font-family: 'Alex Brush', cursive;
+  font-size: 5rem;
+  line-height: 70%;
+  padding-top: 1rem; }
 
+.dd-site-menu {
+  font-family: 'Open Sans Condensed', sans-serif;
+  cursor: pointer; }
+
+a.nav-item.nav-link.dd-site-menu.active {
+  color: darkgreen;
+  background-color: #efefef;
+  border-radius: 5px; }
+
+a.nav-item.nav-link.dd-site-menu {
+  color: black; }
 
 /*# sourceMappingURL=app.component.css.map */

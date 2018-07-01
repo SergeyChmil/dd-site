@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-galleries',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GalleriesComponent implements OnInit {
 
-  constructor() { }
+  galleryType: string;
+
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.route.data
+      .subscribe((data: { type: string }) => {
+        this.galleryType = data.type;
+      });
   }
 
 }

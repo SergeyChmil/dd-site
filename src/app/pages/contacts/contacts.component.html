@@ -1,3 +1,132 @@
-<p>
-  contacts works!
-</p>
+<div class="container bg-light dd-site-content-vertical-padding">
+  <div *ngFor="let contact of contacts$ | async" class="row justify-content-md-center ">
+    <div class="col-1"></div>
+    <div class="col-10 dd-site-textblock dd-site-content-vertical-padding-l dd-site-content-horizontal-padding">
+      <!-- БЛОК С ШАПКОЙ -->
+      <div class="row  text-center">
+        <div class="col-sm-1 "></div>
+        <div class="col-sm-10">
+          <h3>{{contact.header}}</h3>
+          <p class="dd-site-content-horizontal-padding">{{contact.header_text}}</p>
+        </div>
+        <div class="col-sm-1 "></div>
+      </div>
+
+      <hr class="dd-site-dotted-line">
+      <!-- БЛОК С КОНТАКТАМИ -->
+      <div class="row dd-site-content-vertical-padding">
+        <div class="col-6 text-right"><strong class="dd-site-content-text-bold">{{contact.tel_header}}</strong></div>
+        <div class="col-6 text-left"><a href="tel:{{contact.tel_value}}">{{contact.tel_value}}</a></div>
+      </div>
+      <div class="row dd-site-content-vertical-padding">
+        <div class="col-6 text-right"><strong class="dd-site-content-text-bold">{{contact.mail_header}}</strong></div>
+        <div class="col-6 text-left"><a href="mailto:{{contact.mail_value}}">{{contact.mail_value}}</a></div>
+      </div>
+      <div class="row dd-site-content-vertical-padding">
+        <div class="col-6 text-right"><strong class="dd-site-content-text-bold">{{contact.skype_header}}</strong></div>
+        <div class="col-6 text-left"><a [href]="trustedSkypeURL(contact.skype_value)">{{contact.skype_value}}</a></div>
+      </div>
+      <hr class="dd-site-dotted-line">
+      <!-- БЛОК С ИКОНКАМИ -->
+      <div class="row dd-site-content-vertical-padding">
+        <div class="col-12 text-center">
+          <a href="">
+            <fa-icon class="dd-site-fa-facebook-square dd-site-content-horizontal-padding"
+                     [icon]="faFacebookSquare"></fa-icon>
+          </a>
+          <a href="">
+            <fa-icon class="dd-site-fa-instagram dd-site-content-horizontal-padding" [icon]="faInstagram"></fa-icon>
+          </a>
+          <a href="">
+            <fa-icon class="dd-site-fa-pinterest dd-site-content-horizontal-padding" [icon]="faPinterest"></fa-icon>
+          </a>
+        </div>
+      </div>
+      <hr class="dd-site-dotted-line">
+      <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
+      <div class="row  text-left">
+        <div class="col-1"></div>
+        <div class="col-10">
+          <p>{{contact.feedback_header}}</p>
+          <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="form-group">
+              <label for="feedbackAuthor">Ваше имя*</label>
+              <input class="form-control" [(ngModel)]="model.feedbackAuthor" name="feedbackAuthor" id="feedbackAuthor" #feedbackAuthor="ngModel" [ngClass]="{ 'is-invalid': f.submitted && feedbackAuthor.invalid }" required />
+              <div *ngIf="f.submitted && feedbackAuthor.invalid" class="invalid-feedback">
+                <div *ngIf="feedbackAuthor.errors.required">Представьтесь, пожалуйста</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="feedbackPhone">Ваш телефон</label>
+              <input class="form-control" placeholder="" id="feedbackPhone" name="feedbackPhone" [(ngModel)]="model.feedbackPhone">
+            </div>
+            <div class="form-group">
+              <label for="feedbackEmail">Ваш Email*</label>
+              <input type="email" class="form-control" id="feedbackEmail" name="feedbackEmail" aria-describedby="emailHelp"
+                     placeholder="your@email.com"
+                     [(ngModel)]="model.feedbackEmail" #feedbackEmail="ngModel" [ngClass]="{ 'is-invalid': f.submitted && feedbackEmail.invalid }" required email>
+              <small id="emailHelp" class="form-text text-muted">Я не передаю Ваши контактные данные третьим лицам.</small>
+              <div *ngIf="f.submitted && feedbackEmail.invalid" class="invalid-feedback">
+                <div *ngIf="feedbackEmail.errors.required">Введите, пожалуйста, Ваш e-mail</div>
+                <div *ngIf="feedbackEmail.errors.email">Email имеет некорректный формат</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="feedbackMessage">Сообщение*</label>
+              <textarea class="form-control" id="feedbackMessage" name="feedbackMessage" rows="5"
+                        [(ngModel)]="model.feedbackMessage" #feedbackMessage="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && feedbackMessage.invalid }" required></textarea>
+              <div *ngIf="f.submitted && feedbackMessage.invalid" class="invalid-feedback">
+                <div *ngIf="feedbackMessage.errors.required">А как же само сообщение? </div>
+              </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Отправить</button>
+          </form>
+        </div>
+        <div class="col-1"></div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+    <div class="col-1"></div>
+
+
+  </div>
+</div>
+
+
+<!--<form #form="ngForm" (ngSubmit)="logForm(form.value)">-->
+<!--<fieldset ngModelGroup="name">-->
+<!--<label>Firstname:</label>-->
+<!--<input type="text" name="firstname" ngModel>-->
+
+<!--<label>Lastname:</label>-->
+<!--<input type="text" name="lastname" ngModel>-->
+<!--</fieldset>-->
+
+<!--<fieldset ngModelGroup="address">-->
+<!--<label>Street:</label>-->
+<!--<input type="text" name="street" ngModel>-->
+
+<!--<label>Zip:</label>-->
+<!--<input type="text" name="zip" ngModel>-->
+
+<!--<label>City:</label>-->
+<!--<input type="text" name="city" ngModel>-->
+<!--</fieldset>-->
+
+<!--<button type="submit">Submit</button>-->
+<!--</form>-->
+
+
+

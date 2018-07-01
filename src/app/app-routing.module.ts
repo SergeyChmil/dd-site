@@ -7,6 +7,7 @@ import { GalleriesComponent } from './pages/galleries/galleries.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PricesComponent } from './pages/prices/prices.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import {GalleryListComponent} from './pages/galleries/gallery-list/gallery-list.component';
 
 const routes: Routes = [
   {
@@ -24,27 +25,27 @@ const routes: Routes = [
     children: [
       {
         path: 'wedding',
-        component: GalleryComponent,
+        component: GalleryListComponent,
         data : {type : 'wedding'}
       },
       {
         path: 'lovestory',
-        component: GalleryComponent,
+        component: GalleryListComponent,
         data : {type : 'lovestory'}
       },
       {
         path: 'portrait',
-        component: GalleryComponent,
+        component: GalleryListComponent,
         data : {type : 'portrait'}
       },
       {
         path: 'family',
-        component: GalleryComponent,
+        component: GalleryListComponent,
         data : {type : 'family'}
       },
       {
         path: 'pregnancy',
-        component: GalleryComponent,
+        component: GalleryListComponent,
         data : {type : 'pregnancy'}
       },
     ]

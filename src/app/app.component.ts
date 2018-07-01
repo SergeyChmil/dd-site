@@ -6,6 +6,7 @@ import {environment} from '../environments/environment';
 // import {map} from 'rxjs/internal/operators';
 // import 'rxjs/add/operator/map';
 import {map} from 'rxjs/internal/operators';
+import {DataService} from './services/data.service';
 
 
 @Component({
@@ -14,37 +15,24 @@ import {map} from 'rxjs/internal/operators';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
 
   mainMenu$: Observable<any>;
   galleriesMenu$: Observable<any>;
 
-  constructor(private afdb: AngularFireDatabase) {
-
-    this.mainMenu$ = afdb.object(`${environment.keys.mainMenu}`).valueChanges();
-    this.galleriesMenu$ = afdb.object(`${environment.keys.galleriesMenu}`).valueChanges();
-
-    this.mainMenu$.subscribe((data) => {
-
-    });
-
-    // this.mainMenu$ = afdb.list(`${environment.keys.mainMenu}`).snapshotChanges().pipe(map(changes => {
-    //   return changes.map(c => ({
-    //     key: c.payload.key, ...c.payload.val()
-    //   }));
-    // }));
+  constructor(private afdb: AngularFireDatabase, private ds: DataService) {
   }
 
   ngOnInit() {
-
+    this.mainMenu$ = this.ds.getMainMenuAPI();
+    this.galleriesMenu$ = this.ds.getGalleriesAPI();
   }
 
-  checkIsDropDown(pUrl: string) {
-    if (pUrl === 'galleries') return true;
-    return false;
+// TODO: use vars, not plain strings
+  checkIsDropDown(pUrl: string): boolean {
+    return (pUrl === 'galleries');
   }
 
-  getGalleryURL(galleryUrl) {
+  getGalleryURL(galleryUrl): string {
     return `galleries/${galleryUrl}`;
   }
 
