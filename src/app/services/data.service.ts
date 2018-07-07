@@ -29,13 +29,14 @@ export class DataService {
   }
 
   setNewFeedbackMessage(fm: FeedbackMessage): void {
+    // upload new message
     const newId: string = (this.afdb.list(`${environment.keys.feedbackMessages}`).push(fm)).key;
+    // upload ref $key of new uploaded message
     this.afdb.list(`${environment.keys.newFeedbackMessagesList}`).push(newId);
+    // check of updates of new messages list
     const allNewMessages = this.afdb.object(`${environment.keys.newFeedbackMessagesList}`).valueChanges();
     allNewMessages.subscribe((data) => {
       console.log(data);
     });
-    // this.afdb.list('/courses').push({title: 'Test NEW Title'});
-    // return true;
   }
 }

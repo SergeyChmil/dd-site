@@ -8,6 +8,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { PricesComponent } from './pages/prices/prices.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import {GalleryListComponent} from './pages/galleries/gallery-list/gallery-list.component';
+import {AdminLoginComponent} from './pages/admin-login/admin-login.component';
+import {AdminComponent} from './pages/admin/admin.component';
+import {AuthGuardService} from './services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -57,6 +60,15 @@ const routes: Routes = [
   {
     path: 'blog',
     component: BlogComponent
+  },
+  {
+    path: 'admin_login',
+    component: AdminLoginComponent
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: '**',

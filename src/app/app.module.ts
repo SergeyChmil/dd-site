@@ -21,6 +21,10 @@ import {GalleryComponent} from './pages/galleries/gallery/gallery.component';
 import {GalleryListComponent} from './pages/galleries/gallery-list/gallery-list.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import {AuthService} from './services/auth.service';
+import {AuthGuardService} from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     BlogComponent,
     PageNotFoundComponent,
     GalleryComponent,
-    GalleryListComponent
+    GalleryListComponent,
+    AdminLoginComponent,
+    AdminComponent
   ],
   imports: [
     AppRoutingModule,
@@ -46,6 +52,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     NgbModule.forRoot(),
   ],
   providers: [
+    AuthService,
+    AuthGuardService,
     DataService
   ],
   bootstrap: [AppComponent]

@@ -18,6 +18,9 @@ export const environment = {
     contactsData: 'contacts',
     feedbackMessages: 'feedback_messages',
     newFeedbackMessagesList: 'new_feedback_messages_list',
+  },
+  admin: {
+    email: 'sergeytchmil@gmail.com'
   }
 };
 
