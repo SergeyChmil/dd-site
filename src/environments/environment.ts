@@ -16,10 +16,13 @@ export const environment = {
     mainMenu: 'main_menu',
     galleriesMenu: 'galleries_menu',
     contactsData: 'contacts',
+    pricesData: 'prices',
     feedbackMessages: 'feedback_messages',
     newFeedbackMessagesList: 'new_feedback_messages_list',
+    galleriesMetadata: 'galleries_data',
   },
   admin: {
+    localPath: 'admin',
     email: 'sergeytchmil@gmail.com'
   }
 };

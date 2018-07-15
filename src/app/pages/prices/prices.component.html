@@ -1,3 +1,18 @@
-<p>
-  prices works!
-</p>
+<div *ngFor="let priceNote of prices$ | async">
+  <div class="container bg-light dd-site-content-vertical-padding">
+    <!--header if price noted-->
+    <div *ngIf=priceNote.price.length class="row dd-site-prices-header">
+      <div class="col-7 dd-site-prices-header-text"><h6>{{priceNote.header}}</h6></div>
+      <div class="col-5 dd-site-prices-header-text dd-site-prices-header-price">{{priceNote.price}}</div>
+    </div>
+    <!--heaser if price isn't noted-->
+    <div *ngIf=!priceNote.price.length class="row dd-site-prices-header dd-site-prices-header-secondary">
+      <div class="col-7 dd-site-prices-header-text"><h6>{{priceNote.header}}</h6></div>
+      <div class="col-5 dd-site-prices-header-text dd-site-prices-header-price">{{priceNote.price}}</div>
+    </div>
+
+    <div *ngIf=priceNote.description.length class="row dd-site-prices-description dd-site-textblock">
+      <div class="col-12">{{priceNote.description}}</div>
+    </div>
+  </div>
+</div>

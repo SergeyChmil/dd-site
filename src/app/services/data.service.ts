@@ -2,11 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
-// import {map} from 'rxjs/internal/operators';
-// import 'rxjs/add/operator/map';
-import {map} from 'rxjs/internal/operators';
-import {FeedbackMessage} from '../interfaces/FeedbackMessage';
-import Reference = firebase.database.Reference;
+import {FeedbackMessage} from '../interfaces/feedback-message';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +24,11 @@ export class DataService {
     return this.afdb.object(`${environment.keys.galleriesMenu}`).valueChanges();
   }
 
-  setNewFeedbackMessage(fm: FeedbackMessage): void {
+  getPricesAPI(): Observable<any> {
+    return this.afdb.object(`${environment.keys.pricesData}`).valueChanges();
+  }
+
+  saveNewFeedbackMessage(fm: FeedbackMessage): void {
     // upload new message
     const newId: string = (this.afdb.list(`${environment.keys.feedbackMessages}`).push(fm)).key;
     // upload ref $key of new uploaded message

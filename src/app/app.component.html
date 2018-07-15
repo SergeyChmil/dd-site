@@ -12,7 +12,7 @@
 
             <div ngbDropdown *ngIf="checkIsDropDown(item.url)">
               <a class="nav-item nav-link dd-site-menu noselect" ngbDropdownToggle>{{item.text | uppercase}}</a>
-              <div ngbDropdownMenu >
+              <div ngbDropdownMenu>
                 <button *ngFor="let gallery of galleriesMenu$ | async" class="dropdown-item"
                         routerLink={{getGalleryURL(gallery.url)}} routerLinkActive="active"
                         [routerLinkActiveOptions]="{ exact: true }"
@@ -28,6 +28,18 @@
             </div>
 
           </div>
+
+          <div *ngIf="isLogged | async">
+            <a class="nav-item nav-link dd-site-menu noselect"
+               routerLink={{adminPath}} routerLinkActive="active"
+               [routerLinkActiveOptions]="{ exact: true }">АДМИНКА</a>
+          </div>
+
+          <div *ngIf="isLogged | async">
+            <a (click)="logout()" class="nav-item nav-link dd-site-menu noselect">выйти</a>
+          </div>
+
+
         </div>
       </div>
     </div>
@@ -38,13 +50,14 @@
 
 </main>
 
-<div class="container-fluid dd-site-footer-container">
-  <footer class="footer dd-site-footer">
+
+<footer class="footer dd-site-footer">
+  <div class="container-fluid dd-site-footer-container">
     <div class="container-fluid text-center">
       <span class="text-muted">Darya Dobrovolska © 2018</span>
     </div>
-  </footer>
-</div>
+  </div>
+</footer>
 
 
 

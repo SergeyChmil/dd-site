@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs/index';
+import {DataService} from '../../services/data.service';
+import {AngularFireDatabase} from 'angularfire2/database';
 
 @Component({
   selector: 'app-prices',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PricesComponent implements OnInit {
 
-  constructor() { }
+  prices$: Observable<any>;
+
+  constructor(private ds: DataService) { }
 
   ngOnInit() {
+    this.prices$ = this.ds.getPricesAPI();
   }
 
 }

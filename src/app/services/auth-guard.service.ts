@@ -13,9 +13,7 @@ export class AuthGuardService implements CanActivate {
   }
 
   canActivate(): Observable<boolean> {
-    return this.as.isLoggedIn().pipe(map(user => {
-      console.log('IS LOGGED IN?');
-      console.log(Boolean(user));
+    return this.as.getOwner().pipe(map(user => {
       return !!user;
     }));
   }

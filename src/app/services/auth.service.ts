@@ -4,6 +4,7 @@ import * as firebase from 'firebase/app';
 import {Observable} from 'rxjs/index';
 import {Router} from '@angular/router';
 import {environment} from '../../environments/environment';
+import {map} from 'rxjs/internal/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +21,10 @@ export class AuthService {
         if (_owner.email === environment.admin.email) {
           this.userDetails = _owner;
           this.router.navigate(['admin']);
-          console.log('onwner login data');
-          console.log(this.userDetails.email);
         } else {
           this.logout();
         }
       } else {
-        console.log('onwner not logged');
         this.userDetails = null;
       }
     });
@@ -36,8 +34,14 @@ export class AuthService {
     return this.firebaseAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
-  isLoggedIn(): Observable<any> {
+  getOwner(): Observable<any> {
     return this.owner;
+  }
+
+  isLogged(): Observable<boolean> {
+    return this.getOwner().pipe(map(user => {
+      return Boolean(user);
+    }));
   }
 
   logout() {

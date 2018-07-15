@@ -10,6 +10,18 @@ body{
   background-attachment: fixed;
 }
 
+html,body{
+  height: 100%
+}
+
+.footer {
+  bottom: -1.5rem;
+  height: 50px;
+  left: 0;
+  position: fixed;
+  right: 0;
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -18,6 +30,10 @@ body{
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+}
+
+div.container.bg-light.dd-site-content-vertical-padding{
+  margin-bottom: 0.8rem;
 }
 
 .dd-site-dotted-line {

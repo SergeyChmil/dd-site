@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdown, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {HomeComponent} from './pages/home/home.component';
 import {ContactsComponent} from './pages/contacts/contacts.component';
@@ -25,6 +25,12 @@ import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import {AuthService} from './services/auth.service';
 import {AuthGuardService} from './services/auth-guard.service';
+import {UploadFileService} from './services/upload-file.service';
+import { CheckIsLoggedPipe } from './pipes/check-is-logged.pipe';
+import { CreateGalleryComponent } from './pages/admin/forms/create-gallery/create-gallery.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { LinkifyPipe } from './pipes/linkify.pipe';
+import {CommonService} from './services/common.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +44,10 @@ import {AuthGuardService} from './services/auth-guard.service';
     GalleryComponent,
     GalleryListComponent,
     AdminLoginComponent,
-    AdminComponent
+    AdminComponent,
+    CheckIsLoggedPipe,
+    CreateGalleryComponent,
+    LinkifyPipe,
   ],
   imports: [
     AppRoutingModule,
@@ -46,6 +55,7 @@ import {AuthGuardService} from './services/auth-guard.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserModule,
+    BrowserAnimationsModule,
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
@@ -54,7 +64,9 @@ import {AuthGuardService} from './services/auth-guard.service';
   providers: [
     AuthService,
     AuthGuardService,
-    DataService
+    UploadFileService,
+    DataService,
+    CommonService,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/index';
-import {AngularFireDatabase} from 'angularfire2/database';
-import {environment} from '../../../environments/environment';
 import {DomSanitizer} from '@angular/platform-browser';
 import {faFacebookSquare, faInstagram, faPinterest} from '@fortawesome/free-brands-svg-icons/';
 import {DataService} from '../../services/data.service';
-import {FeedbackMessage} from '../../interfaces/FeedbackMessage';
+import {FeedbackMessage} from '../../interfaces/feedback-message';
 
 @Component({
   selector: 'app-contacts',
@@ -21,9 +19,7 @@ export class ContactsComponent implements OnInit {
 
   model: FeedbackMessage = new FeedbackMessage;
 
-  constructor(private afdb: AngularFireDatabase, private sanitizer: DomSanitizer, private ds: DataService) {
-    // this.contacts$ = afdb.object(`${environment.keys.contactsData}`).valueChanges();
-  }
+  constructor(private sanitizer: DomSanitizer, private ds: DataService) {}
 
   ngOnInit() {
     this.contacts$ = this.ds.getContactsAPI();
@@ -34,13 +30,10 @@ export class ContactsComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(`skype:${pUrl}?chat`);
   }
 
-  logForm(val) {
-    console.log(val);
-  }
-
+  //todo: marked for delete
   onSubmit() {
     this.model.id = this.model.timestamp = Date.now();
-    this.ds.setNewFeedbackMessage(this.model);
+    this.ds.saveNewFeedbackMessage(this.model);
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model));
   }
 

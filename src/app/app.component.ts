@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {Observable} from 'rxjs';
 import {environment} from '../environments/environment';
-// import {map} from 'rxjs/internal/operators';
-// import 'rxjs/add/operator/map';
-import {map} from 'rxjs/internal/operators';
+
 import {DataService} from './services/data.service';
+import {AuthService} from './services/auth.service';
 
 
 @Component({
@@ -18,8 +16,12 @@ export class AppComponent implements OnInit {
 
   mainMenu$: Observable<any>;
   galleriesMenu$: Observable<any>;
+  isLogged: Observable<any>;
+  adminPath: string;
 
-  constructor(private afdb: AngularFireDatabase, private ds: DataService) {
+  constructor(private afdb: AngularFireDatabase, private ds: DataService, private as: AuthService) {
+    this.isLogged = as.isLogged();
+    this.adminPath = environment.admin.localPath;
   }
 
   ngOnInit() {
@@ -34,6 +36,10 @@ export class AppComponent implements OnInit {
 
   getGalleryURL(galleryUrl): string {
     return `galleries/${galleryUrl}`;
+  }
+
+  logout() {
+    this.as.logout();
   }
 
 }
