@@ -17,6 +17,7 @@ export const environment = {
     galleriesMenu: 'galleries_menu',
     contactsData: 'contacts',
     pricesData: 'prices',
+    blogPostsData: 'blog_posts',
     feedbackMessages: 'feedback_messages',
     newFeedbackMessagesList: 'new_feedback_messages_list',
     galleriesMetadata: 'galleries_data',
@@ -24,6 +25,10 @@ export const environment = {
   admin: {
     localPath: 'admin',
     email: 'sergeytchmil@gmail.com'
+  },
+  system_messages: {
+    gallery_upload_success: 'Галерея успешно создана и загружена.',
+    post_upload_success: 'Запись в блоге успешно создана и загружена.',
   }
 };
 

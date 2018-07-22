@@ -25,12 +25,16 @@ import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import {AuthService} from './services/auth.service';
 import {AuthGuardService} from './services/auth-guard.service';
-import {UploadFileService} from './services/upload-file.service';
+import {UploadService} from './services/upload.service';
 import { CheckIsLoggedPipe } from './pipes/check-is-logged.pipe';
 import { CreateGalleryComponent } from './pages/admin/forms/create-gallery/create-gallery.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { LinkifyPipe } from './pipes/linkify.pipe';
 import {CommonService} from './services/common.service';
+import { AdminFormComponent } from './pages/admin/forms/admin-form/admin-form.component';
+import { UploadGalleryComponent } from './shared/upload-gallery/upload-gallery.component';
+import { AlertSelfClosingComponent } from './shared/alert-self-closing/alert-self-closing.component';
+import { CreateBlogPostComponent } from './pages/admin/forms/create-blog-post/create-blog-post.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +52,10 @@ import {CommonService} from './services/common.service';
     CheckIsLoggedPipe,
     CreateGalleryComponent,
     LinkifyPipe,
+    AdminFormComponent,
+    UploadGalleryComponent,
+    AlertSelfClosingComponent,
+    CreateBlogPostComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -64,7 +72,7 @@ import {CommonService} from './services/common.service';
   providers: [
     AuthService,
     AuthGuardService,
-    UploadFileService,
+    UploadService,
     DataService,
     CommonService,
   ],

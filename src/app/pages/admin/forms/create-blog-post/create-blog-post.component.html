@@ -1,0 +1,38 @@
+<div class="container bg-light dd-site-content-vertical-padding  ">
+  <button type="button" class="btn btn-success btn-block" (click)="toggleState()">Написать новый пост</button>
+</div>
+
+<div class="dd-site-content dd-site-textblock  dd-site-content-vertical-padding dd-site-content-horizontal-padding" *ngIf="state==='active'">
+  <div class="row">
+    <div class="col-12">
+      Создание нового поста. Нужно ввести заголовок, текст и загрузить фотографии. Если заголовок не указан, то пост автоматически опубликуется с заголовком "Без названия". Ни одно поле не является обязательным для заполнения, но хоть что-то нужно ввести. Можно загружать только снимки, можно только текст или вообще только заголовок. Можно комбинировать.
+    </div>
+    <div class="col-12">
+      <div class="form-group row">
+        <div class="col-12">
+          <label for="postNameInput">Название поста</label>
+          <input #postNameInput class="form-control" id="postNameInput"
+                 (input)="onPostTextDataInputed(postNameInput)">
+        </div>
+
+        <div class="col-12">
+          <label for="postTextInput">Текст поста</label>
+          <textarea #postTextInput rows=10 class="form-control" id="postTextInput"
+                    (input)="onPostTextDataInputed(postTextInput)"></textarea>
+        </div>
+
+        <div class="col-12">
+
+          <app-upload-gallery #uploader [chosenGalleryKey]="chosenGalleryKey" [chosenGalleryPath]="chosenGalleryPath"
+                              (filesChosen)="onFilesChosen()" (loaded)="onFilesLoaded()"></app-upload-gallery>
+
+          <button class="btn btn-primary" [disabled]="!isHeaderPrinted && !isTextPrinted && !isFilesChosen"
+                  (click)="uploadGallery(uploader)">Опубликовать
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <app-alert-selfclosing [success]="success"></app-alert-selfclosing>
+</div>

@@ -4,11 +4,12 @@ import {FileUpload} from '../interfaces/file-upload';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {GalleryMetadata} from '../interfaces/gallery-metadata';
 import {environment} from '../../environments/environment';
+import {BlogPost} from '../interfaces/blog-post';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UploadFileService {
+export class UploadService {
 
   private basePath = '/uploads';
 
@@ -34,6 +35,7 @@ export class UploadFileService {
       () => {
         fileUpload.url = uploadTask.snapshot.metadata.fullPath;
         fileUpload.name = uploadTask.snapshot.metadata.name;
+        // console.log(storageRef);
         this._saveFileMetadata(fileUpload, galleryPath);
         if (cbSuccess) {
           cbSuccess();
@@ -45,6 +47,15 @@ export class UploadFileService {
     const dataUploadListener = this.db.list(`${environment.keys.galleriesMetadata}`).snapshotChanges();
     dataUploadListener.subscribe(() => cb());
     this.db.list(`${environment.keys.galleriesMetadata}/`).push(galleryData);
+  }
+
+  uploadBlogPost(postUpload: BlogPost, cbSuccess: Function = null, cbError: Function = null) {
+    this.db.list(`${environment.keys.blogPostsData}`).push(postUpload)
+      .then(() => {
+        if (cbSuccess) {
+          cbSuccess();
+        }
+      });
   }
 
   deleteFileFromStorage() {

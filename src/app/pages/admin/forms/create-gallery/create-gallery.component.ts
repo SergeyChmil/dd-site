@@ -1,11 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs/index';
+import {Component} from '@angular/core';
+import {Observable, Subject} from 'rxjs/index';
 import {DataService} from '../../../../services/data.service';
-import {FileUpload} from '../../../../interfaces/file-upload';
-import {UploadFileService} from '../../../../services/upload-file.service';
-import * as _ from 'lodash';
+import {UploadService} from '../../../../services/upload.service';
 import {CommonService} from '../../../../services/common.service';
 import {GalleryMetadata} from '../../../../interfaces/gallery-metadata';
+import {AdminFormComponent} from '../admin-form/admin-form.component';
+import {UploadGalleryComponent} from '../../../../shared/upload-gallery/upload-gallery.component';
+import {environment} from '../../../../../environments/environment';
 
 
 @Component({
@@ -13,76 +14,56 @@ import {GalleryMetadata} from '../../../../interfaces/gallery-metadata';
   templateUrl: './create-gallery.component.html',
   styleUrls: ['./create-gallery.component.scss'],
 })
-export class CreateGalleryComponent implements OnInit {
+export class CreateGalleryComponent extends AdminFormComponent {
 
-  public state = 'inactive';
   chosenGallery = 'Выбрать раздел';
-  chosenGalleryPath = '';
-  chosenGalleryKey = '';
-  chosenGalleryName = '';
   isGalleryChosen = false;
   isGalleryNamed = false;
-  isFilesChosen = false;
-  filesLoaded = 0;
   galleryNameInput: any = null;
   galleries$: Observable<any>;
 
-  selectedFiles: FileList;
-  currentUpload: FileUpload;
-  progress: { percentage: number } = {percentage: 0};
-
-  constructor(private ds: DataService, private us: UploadFileService, private cs: CommonService) {
+  constructor(private ds: DataService, public us: UploadService, public cs: CommonService) {
+    super(us, cs);
     this.galleries$ = this.ds.getGalleriesAPI();
   }
 
-  ngOnInit() {
-  }
-
-  uploadGalleryMetadata() {
-    const callback = () => this.refreshSucceedForm();
+  buildGalleryMetadata() {
     const gm = new GalleryMetadata();
     gm.name = this.chosenGalleryName;
     gm.key = this.chosenGalleryKey;
     gm.type = this.chosenGalleryPath;
-    this.us.saveGalleryMetadata(this.chosenGalleryPath, gm, callback);
+    gm.date = new Date().toDateString();
+    return gm;
   }
 
-  uploadGallery() {
-    const callback = () => {
-      this.filesLoaded++;
-      if (this.filesLoaded === this.selectedFiles.length) {
-        this.uploadGalleryMetadata();
-      }
-    };
-
-    const files = this.selectedFiles;
-    const filesIndex = _.range(files.length);
-    const fullGalleryPath = `${this.chosenGalleryPath}/${this.chosenGalleryKey}`;
-    _.each(filesIndex, (idx) => {
-      this.currentUpload = new FileUpload(files[idx]);
-      this.us.uploadFileToStorage(this.currentUpload, this.progress, fullGalleryPath, callback);
-    });
-  }
-
+  /**
+   * Save inputed galery name, generate gallery key identifier
+   * @param inputField link to the input gallery name field, for future clearing
+   */
   onGalleryNameChanged(inputField: any) {
     this.galleryNameInput = inputField;
     this.chosenGalleryKey = this.cs.getStringKey();
     this.chosenGalleryName = this.cs.getClearString(inputField.value);
     this.galleryNameInput.value = this.chosenGalleryName;
+
     this.isGalleryNamed = Boolean(this.chosenGalleryName.length);
   }
 
+  /**
+   * Choosing new gallery type, saving global gallery path in future metadata
+   * @param {string} chosenGallery - used in template only
+   * @param {string} chosenGalleryPath
+   */
   onGallerySelect(chosenGallery: string, chosenGalleryPath: string) {
     this.chosenGallery = chosenGallery;
     this.chosenGalleryPath = chosenGalleryPath;
+
     this.isGalleryChosen = true;
   }
 
-  detectFiles(event) {
-    this.selectedFiles = event.target.files;
-    this.isFilesChosen = true;
-  }
-
+  /**
+   * Clear all inputed and generated data, preparing for new cycle
+   */
   refreshSucceedForm() {
     this.chosenGallery = 'Выбрать раздел';
     this.chosenGalleryPath = '';
@@ -92,14 +73,6 @@ export class CreateGalleryComponent implements OnInit {
     this.isGalleryChosen = false;
     this.isGalleryNamed = false;
     this.isFilesChosen = false;
-    this.filesLoaded = 0;
-    this.progress = {percentage: 0};
-    this.selectedFiles = null;
-    this.currentUpload = null;
-  }
-
-  toggleState() {
-    this.state = this.state === 'active' ? 'inactive' : 'active';
   }
 
 }

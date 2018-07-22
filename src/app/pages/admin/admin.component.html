@@ -1,11 +1,13 @@
 <div class="container bg-light dd-site-content-vertical-padding">
-  <p>Create new post</p>
+
   <div>
-    <app-create-gallery #tempForm [@formState]="tempForm.state"></app-create-gallery>
+    <app-create-blog-post #createBlogPostForm [@formState]="createBlogPostForm.state"></app-create-blog-post>
+    <app-create-gallery #createGalleryForm [@formState]="createGalleryForm.state"></app-create-gallery>
 
   </div>
   <p>Edit contacts</p>
   <p>Edit price</p>
+  <p>In-site messages</p>
 
 
   <div *ngIf="currentFileUpload" class="progress" style="width:400px">

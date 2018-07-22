@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FileUpload} from '../../interfaces/file-upload';
-import {UploadFileService} from '../../services/upload-file.service';
+import {UploadService} from '../../services/upload.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {el} from '@angular/platform-browser/testing/src/browser_util';
 
@@ -11,10 +11,10 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
   animations: [
     trigger('formState', [
       state('inactive', style({
-        height: '3rem'
+        height: '10%'
       })),
       state('active', style({
-        height: '20rem'
+        height: '100%'
       })),
       transition('inactive => active', animate('100ms')),
       transition('active => inactive', animate('50ms')),

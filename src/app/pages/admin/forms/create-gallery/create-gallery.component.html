@@ -1,7 +1,6 @@
 <div class="container bg-light dd-site-content-vertical-padding">
-      <button type="button" class="btn btn-success btn-block" (click)="toggleState()">Создать галлерею</button>
+  <button type="button" class="btn btn-success btn-block" (click)="toggleState()">Создать галлерею</button>
 </div>
-
 
 
 <div class="dd-site-content dd-site-textblock" *ngIf="state==='active'">
@@ -23,41 +22,30 @@
 
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button #selectedGallery *ngFor="let gallery of galleries$ | async" class="dropdown-item d-inline-block"
-                  (click)="onGallerySelect(gallery.text, gallery.url)">{{gallery.text}}</button>
+                  (click)="onGallerySelect(gallery.text, gallery.url)">{{gallery.text}}
+          </button>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-12">
           <label for="galleryNameInput">Название новой галлереи</label>
-          <input #galleryNameInput class="form-control" id="galleryNameInput" type="text" (change)="onGalleryNameChanged(galleryNameInput)">
-
+          <input #galleryNameInput class="form-control" id="galleryNameInput" type="text"
+                 (change)="onGalleryNameChanged(galleryNameInput)">
         </div>
-
       </div>
 
     </div>
     <div class="col-6">
 
-      <div *ngIf="currentUpload">
-        <div class="progress">
-          <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
-        </div>
-        Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
-      </div>
-
-
-      <label>
-        <input type="file" (change)="detectFiles($event)" multiple>
-      </label>
+      <app-upload-gallery #uploader [chosenGalleryKey]="chosenGalleryKey" [chosenGalleryPath]="chosenGalleryPath"
+                          (filesChosen)="onFilesChosen()" (loaded)="onFilesLoaded()"></app-upload-gallery>
 
       <button class="btn btn-primary" [disabled]="!isGalleryChosen || !isGalleryNamed || !isFilesChosen"
-              (click)="uploadGallery()">Сохранить</button>
+              (click)="uploadGallery(uploader)">Сохранить
+      </button>
+
     </div>
   </div>
-
-
-
-
-
+  <app-alert-selfclosing [success]="success"></app-alert-selfclosing>
 </div>
 
